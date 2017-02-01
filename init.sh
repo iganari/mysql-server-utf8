@@ -11,11 +11,11 @@ docker build --no-cache .
 
 
 ### add tag 
-docker tag $(docker images -q | head -1) ${IMAGE__NAME}
+docker tag $(docker images -q | head -1) ${IMAGE_NAME}
 
 
 ### running mysql container with mysql_root_password
-docker run --privileged --name ${CONTAINER_NAME} -e MYSQL_ROOT_PASSWORD=${DB_ROOT_PASSWD} -d ${IMAGE__NAME}
+docker run --privileged --name ${CONTAINER_NAME} -e MYSQL_ROOT_PASSWORD=${DB_ROOT_PASSWD} -d ${IMAGE_NAME}
 
 
 ### access into docker container(echo)
