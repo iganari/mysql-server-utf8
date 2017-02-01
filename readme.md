@@ -23,3 +23,11 @@ $ docker run --name iganari-db -e MYSQL_ROOT_PASSWORD=hogehoge -d  igaguri/mysql
 ```
 $ docker exec -it iganari-db mysql -uroot -phogehoge
 ```
+
+### 日本語確認
+
++ mysql
+
+```
+show variables like "chara%";
+```
