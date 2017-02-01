@@ -1,21 +1,22 @@
 #!/bin/bash
 
-set -xeu
+set -eu ### debug option is "-xeu"
 
+    IMAGE_NAME='mysql-server-utf8'
+CONTAINER_NAME='iganari-mysql'
 DB_ROOT_PASSWD="${1}"
 
-### (pullとか)キャッシュせず、新たにDockerfileから作成する
-
+### create docker container without cache
 docker build --no-cache .
 
-### tagをつける
 
-docker tag $(docker images -q | head -1) igaguri/mysql-server
+### add tag 
+docker tag $(docker images -q | head -1) ${IMAGE__NAME}
 
-### rootのパスワードを設定して起動
 
-docker run --privileged --name iganari-db -e MYSQL_ROOT_PASSWORD=${DB_ROOT_PASSWD} -d  igaguri/mysql-server
+### running mysql container with mysql_root_password
+docker run --privileged --name ${CONTAINER_NAME} -e MYSQL_ROOT_PASSWORD=${DB_ROOT_PASSWD} -d ${IMAGE__NAME}
 
-### コンテナにアクセス
 
-echo "docker exec -it iganari-db mysql -uroot -p${DB_ROOT_PASSWD}"
+### access into docker container(echo)
+echo "docker exec -it ${CONTAINER_NAME} mysql -uroot -p${DB_ROOT_PASSWD}"
